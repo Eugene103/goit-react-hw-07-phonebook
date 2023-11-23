@@ -1,9 +1,9 @@
 import { Conteiner, Label, Err, Btn } from "./ContactForm.styled";
 import {  Formik, Field, ErrorMessage } from 'formik';
-import { nanoid } from "nanoid";
 import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from "redux/contactsSlice";
+import { addContact } from "redux/operations";
+
 
 const ContactSchema = Yup.object().shape({
    name: Yup.string()
@@ -26,8 +26,8 @@ const newContact = (newContact) => {
     if (checkName) {
       alert(`${newContact.name} is already in contacts`)
       return
-    }
-   dispatch(addContact({ ...newContact, id: nanoid() }))
+  }
+  dispatch(addContact(newContact))
   }
 
     return <Formik
